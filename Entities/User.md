@@ -6,6 +6,7 @@ skinparam linetype ortho
 '========================
 ' Core Identity / Account
 '========================
+
 class User {
   +userId: UUID
   +username: String
@@ -30,18 +31,6 @@ class Account {
   +geoLong: Decimal
 }
 
-enum AccountType {
-  regular
-  prepaid
-  postpaid
-}
-
-enum AccountStatus {
-  active
-  suspended
-  expired
-  disabled
-}
 
 class AdminUser {
   +adminId: UUID
@@ -86,12 +75,6 @@ class Credential {
   +verificationFailedCount: int
 }
 
-enum PasswordType {
-  blank
-  userDefined
-  macAddress
-}
-
 class RadiusAttribute {
   +attrId: UUID
   +name: String
@@ -107,12 +90,6 @@ class Verification {
   +smsSentCount: int
 }
 
-enum VerificationStatus {
-  notRequired
-  pending
-  verified
-  failed
-}
 
 Account "1" o-- "0..1" Credential : auth >
 Account "1" o-- "0..*" RadiusAttribute : customAttrs >
@@ -202,16 +179,6 @@ class IPAssignment {
   +staticIp: String
 }
 
-enum DeviceRole {
-  CPE
-  CM
-}
-
-enum IPMode {
-  nasPoolOrDhcp
-  ipPool
-  staticIp
-}
 
 class IPPool {
   +poolId: UUID
